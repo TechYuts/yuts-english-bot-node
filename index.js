@@ -5,8 +5,16 @@ var alc = require("./alc.js")
 var channel = "hubot-dev";
 var map = {}; 
  
+var token;
+
+if (config.yutsbot.token != null) {
+    token = config.yutsbot.token;
+}else{
+    token = process.env.token;
+}
+
 var bot = new SlackBot({
-   token: config.yutsbot.token,
+   token: token,
    name: "yutsbot"
 });
 
