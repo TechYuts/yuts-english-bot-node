@@ -42,7 +42,7 @@ function handleMessage(message) {
             sendMeaning(message.user);
             break;
         case "ping":
-            bot.postMessage(message.channel, "PONG!");
+            bot.postMessage(message.channel, "PONG!", {as_user: true});
             break;
         default:
             return;
@@ -51,21 +51,21 @@ function handleMessage(message) {
 
 function sendWord(user){
     if (map[user]) {
-        bot.postMessageToChannel(channel, "<@" + user + "> さんの今日の単語はすでに登録されています「" + map[user] + "」です。");
+        bot.postMessageToChannel(channel, "<@" + user + "> さんの今日の単語はすでに登録されています「" + map[user] + "」です。", {as_user: true});
         return;
     }
     map[user] = randomWords();
-    bot.postMessageToChannel(channel, "<@" + user + "> さんの今日の単語は「" + map[user] + "」です。");
+    bot.postMessageToChannel(channel, "<@" + user + "> さんの今日の単語は「" + map[user] + "」です。", {as_user: true});
     return;
 }
 
 function sendMeaning(user) {
     if(!map[user]){
-        bot.postMessageToChannel(channel, "まだ今日の単語が登録されていません");
+        bot.postMessageToChannel(channel, "まだ今日の単語が登録されていません", {as_user: true});
         return;
     }
     alc(map[user], bot).then(function (result) {
-        bot.postMessageToChannel(channel, result);
+        bot.postMessageToChannel(channel, result, {as_user: true});
     });
     delete map[user];
 }
