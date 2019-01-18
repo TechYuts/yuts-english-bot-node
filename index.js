@@ -64,6 +64,8 @@ function sendMeaning(user) {
         bot.postMessageToChannel(channel, "まだ今日の単語が登録されていません");
         return;
     }
-    var result = alc(map[user], bot);
+    alc(map[user], bot).then(function (result) {
+        bot.postMessageToChannel(channel, result);
+    });
     delete map[user];
 }

@@ -15,7 +15,7 @@
 
   // Author:
   //   kaneshin
-  var HtmlParser, Select, alcUri, channel;
+  var HtmlParser, Select, alcUri;
 
   var request = require('request-promise');
 
@@ -25,7 +25,6 @@
 
   alcUri = "http://eow.alc.co.jp/search?";
 
-  channel = "hubot-dev";
     
   module.exports = function(word, bot) {
     var _, item;
@@ -40,7 +39,7 @@
       resolveWithFullResponse: true 
     };
     
-    request(options).then((res) => {
+    return request(options).then((res) => {
        var RangeError, handler, i, j, l, len1, li, list, message, ol, parser, processResult, ref1, results, span;
         message = ["今日の単語の「" + word + "」の意味は〜"];
           if (res.statusCode === 200) {
@@ -101,7 +100,7 @@
           } else {
             message.push("Error " + res.statusCode);
           }
-      bot.postMessageToChannel(channel, message.join("\n")); 
+      return message.join("\n"); 
     }).catch(function (err) {
       console.log(err);
     });
