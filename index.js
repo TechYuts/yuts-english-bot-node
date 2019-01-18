@@ -1,15 +1,16 @@
 var SlackBot = require("slackbots");
 var randomWords = require('random-words');
-var config = require('./config/development.json')
 var alc = require("./alc.js")
 var channel = "hubot-dev";
 var map = {}; 
  
 var token;
 
-if (config.yutsbot.token != null) {
+if (process.env.token == null){
+    var config = require('./config/development.json')
     token = config.yutsbot.token;
-}else{
+}
+else{
     token = process.env.token;
 }
 
