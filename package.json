@@ -12,6 +12,7 @@
     "htmlparser": "1.7.6",
     "random-words": "^1.1.0",
     "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "slackbots": "^1.2.0",
     "soupselect": "0.2.0"
   }
