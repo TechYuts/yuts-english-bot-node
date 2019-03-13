@@ -34,14 +34,14 @@ bot.on("message", function(data) {
 });
 
 function handleMessage(message) {
-    switch(message.text) {
-        case "plzq":
+    switch(true) {
+        case message.text.includes("plzq"):
             sendWord(message.user);
             break;
-        case "plza":
+        case message.text.includes("plza"):
             sendMeaning(message.user);
             break;
-        case "ping":
+        case message.text == "ping":
             bot.postMessage(message.channel, "PONG!", {as_user: true});
             break;
         default:
